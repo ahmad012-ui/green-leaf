@@ -27,7 +27,7 @@
       <h3 class="text-lg font-semibold text-white mb-3">Contact</h3>
       <ul class="space-y-2 text-sm">
         <li><i class="fas fa-map-marker-alt text-green-400 mr-2"></i> Karachi, Pakistan</li>
-        <li><i class="fas fa-envelope text-green-400 mr-2"></i> support@greenleaf.com</li>
+        <li><i class="fas fa-envelope text-green-400 mr-2"></i><a href="mailto:">support@greenleaf.com</a></li>
         <li><i class="fas fa-phone text-green-400 mr-2"></i> +92 300 1234567</li>
         <div class="flex space-x-4 mt-4">
           <a href="#" class="text-gray-400 hover:text-green-400"><i class="fab fa-facebook-f"></i></a>
