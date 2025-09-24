@@ -11,6 +11,7 @@ include 'includes/functions.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Green Leaf</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
   <!-- Navbar -->
@@ -28,19 +29,13 @@ include 'includes/functions.php';
 
     <div class="max-w-4xl mx-auto bg-white shadow-md rounded-2xl p-6 mb-12">
       <p class="mb-4">
-        Welcome to <span class="font-semibold">Green Leaf</span>, a web application designed to connect people with the beauty of nature through plants and gardening. 
-        Our mission is to make home gardening accessible and enjoyable for everyone, regardless of their experience level.
+        Discover the joy of gardening with <span class="font-semibold">Green Leaf</span>, your all-in-one platform for plants and care. Whether you’re a beginner or a seasoned gardener, Green Leaf helps you explore a wide plant catalog, receive personalized care tips, and grow your green space with confidence.
       </p>
       <p class="mb-4">
-        In a world where finding the right plant and managing its care can be challenging, Green Leaf serves as a centralized digital platform. 
-        We provide a comprehensive online plant catalog, personalized care schedules, and a wealth of reliable gardening tips and guides to help your plants thrive.
+        From plant recommendations to expert guides, Green Leaf makes gardening simple, accessible, and inspiring. Build your virtual garden, learn how to nurture your plants, and join a community passionate about nature.
       </p>
-      <p class="mb-4">
-        Whether you are a seasoned gardener or just starting your plant journey, Green Leaf is here to support you every step of the way. 
-        Explore our catalog, build your virtual garden, and get inspired by our community-contributed articles and tips.
-      </p>
-      <p>
-        This project was developed for the <span class="font-semibold">Aptech Learning "Ticket to Techwiz"</span> competition, demonstrating a full-stack web application solution to a real-world problem.
+      <p class="mb-4 text-center">
+        <span class="font-semibold text-center">Green Leaf — Where Every Home Can Bloom.</span>
       </p>
     </div>
 
@@ -76,7 +71,7 @@ include 'includes/functions.php';
     </section>
 
     <!-- Team -->
-    <section class="mb-12">
+    <!-- <section class="mb-12">
       <h2 class="text-2xl font-bold text-center text-green-600 mb-8">Meet Our Team</h2>
       <div class="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
         <div class="bg-white p-6 rounded-xl shadow text-center">
@@ -90,7 +85,7 @@ include 'includes/functions.php';
           <p class="text-gray-500">UI/UX Designer</p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Impact -->
     <section class="bg-green-50 p-8 rounded-2xl shadow text-center mb-12">
