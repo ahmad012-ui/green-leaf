@@ -34,6 +34,7 @@ if (!$order) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmed - Green Leaf</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
     <header>
@@ -73,16 +74,15 @@ if (!$order) {
                     </ul>
 
                     <div class="mt-6 flex justify-center gap-4">
-                        <a href="index.php" class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Continue Shopping</a>
+                        <a href="catalog.php" class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Continue Shopping</a>
                         <a href="my_orders.php" class="px-5 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">View My Orders</a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <?php include 'footer.php'; ?>
 
-    <footer>
-        <?php include 'footer.php'; ?>
-    </footer>
+    
 </body>
 </html>

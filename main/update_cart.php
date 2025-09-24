@@ -10,17 +10,35 @@ $response = ['success' => false];
 if (isset($_SESSION['user_id']) && isset($_POST['cart_id'])) {
     $cart_id = intval($_POST['cart_id']);
 
-    // Increment / decrement logic
+    // Case 1: Increment
     if (isset($_POST['increment'])) {
         $sql = "UPDATE cart SET quantity = quantity + 1 WHERE cart_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $cart_id);
+        $stmt->execute();
+        $stmt->close();
+
+    // Case 2: Decrement
     } elseif (isset($_POST['decrement'])) {
         $sql = "UPDATE cart SET quantity = GREATEST(quantity - 1, 1) WHERE cart_id = ?";
-    }
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $cart_id);
+        $stmt->execute();
+        $stmt->close();
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $cart_id);
-    $stmt->execute();
-    $stmt->close();
+    // Case 3: Manual quantity update (your Update button)
+    } elseif (isset($_POST['quantity'])) {
+        $quantity = max(1, intval($_POST['quantity'])); // never less than 1
+        $sql = "UPDATE cart SET quantity = ? WHERE cart_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $quantity, $cart_id);
+        $stmt->execute();
+        $stmt->close();
+
+    } else {
+        echo json_encode(['success' => false, 'message' => 'No action specified']);
+        exit;
+    }
 
     // Fetch updated cart item
     $stmt = $conn->prepare("SELECT quantity, price FROM cart JOIN plants ON cart.plant_id = plants.plant_id WHERE cart_id = ?");
