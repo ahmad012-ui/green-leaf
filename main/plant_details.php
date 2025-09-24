@@ -3,6 +3,11 @@ session_start();
 date_default_timezone_set("Asia/Karachi");
 include 'includes/db_connection.php';
 include 'includes/functions.php';
+include 'includes/csrf.php';    
+
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 function timeAgo($time) {
     $timestamp = strtotime($time);
@@ -76,6 +81,7 @@ $total_likes = count_plant_likes($plant_id);
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= htmlspecialchars($plant['name']) ?> - Green Leaf</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
 
@@ -121,7 +127,9 @@ $total_likes = count_plant_likes($plant_id);
     </form>
 
     <!-- Add to Cart -->
-    <form action="add_to_cart.php" method="GET">
+    <form action="add_to_cart.php" method="POST">
+        <!-- CSRF Token -->
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <input type="hidden" name="id" value="<?= $plant_id ?>">
         <button type="submit" class="w-full px-4 py-2 bg-green-600 text-white font-semibold rounded hover:bg-green-700 transition">🛒 Add to Cart</button>
     </form>

@@ -39,6 +39,7 @@ $order_items = get_order_items($order_id);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order #<?php echo htmlspecialchars($order['order_id']); ?> Details</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
