@@ -1,7 +1,32 @@
 <?php
+// echo "<pre>";
+// print_r($_POST);
+// echo "</pre>";
+// exit;
 // add_to_cart.php - add a plant/item to the user's cart
 require_once 'includes/db_connection.php';
+require_once 'includes/functions.php';
 require_once 'includes/csrf.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Invalid CSRF token");
+    }
+
+    $plant_id = intval($_POST['id']);   // since your form sends "id"
+    $quantity = 1;                      // default, since your form has no "quantity"
+    $user_id  = $_SESSION['user_id'] ?? null;
+
+    if ($user_id && $plant_id && $quantity > 0) {
+        add_to_cart($user_id, $plant_id, $quantity);
+        header("Location: cart.php");
+        exit();
+    } else {
+        echo "Invalid cart request.";
+    }
+} else {
+    echo "Invalid request method.";
+}
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
