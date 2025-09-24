@@ -17,6 +17,7 @@ $all_blogs = get_all_blogs();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gardening Tips & Blogs - Green Leaf</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50 text-gray-900">
 

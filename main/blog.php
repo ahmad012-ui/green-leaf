@@ -86,6 +86,7 @@ if ($user_id) {
     <title><?php echo htmlspecialchars($blog['title']); ?> - Green Leaf Blog</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
 
@@ -153,7 +154,7 @@ if ($user_id) {
 
                 <!-- Comment Form -->
                 <div class="bg-gray-100 p-6 rounded-lg shadow">
-                    <h2 class="text-lg font-semibold mb-4">Leave a Comment</h2>
+                    <h2 class="text-lg font-semibold mb-4">Review</h2>
                     <form action="add_comment.php" method="POST" class="space-y-4">
                         <!-- CSRF Protection -->
                         <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
@@ -161,7 +162,7 @@ if ($user_id) {
 
                         <!-- Comment Textarea -->
                         <div>
-                            <label for="comment" class="block text-sm font-medium">Comment</label>
+                            <label for="comment" class="block text-sm font-medium">Write your thoughts on this product</label>
                             <textarea id="comment" name="comment" rows="4" required 
                                       class="w-full px-4 py-2 border rounded-lg focus:outline-none 
                                              focus:ring-2 focus:ring-green-500"></textarea>
@@ -170,14 +171,14 @@ if ($user_id) {
                         <!-- Submit Comment -->
                         <button type="submit" 
                                 class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-                            💬 Post Comment
+                            💬 Post
                         </button>
                     </form>
                 </div>
 
                 <!-- Display Comments -->
                 <div class="mt-6">
-                    <h3 class="text-lg font-semibold mb-3">Comments</h3>
+                    <h3 class="text-lg font-semibold mb-3">Reviews</h3>
                     <?php
                     // Fetch comments for this blog
                     $stmt = $conn->prepare("
@@ -219,7 +220,7 @@ if ($user_id) {
                         }
                     } else {
                         // No comments found
-                        echo '<p class="text-gray-500">No comments yet. Be the first!</p>';
+                        echo '<p class="text-gray-500">No reviews yet. Be the first!</p>';
                     }
                     ?>
                 </div>
