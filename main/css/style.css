@@ -1,0 +1,43 @@
+/* General Body Styles for Sticky Footer */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Catalog Page Specific Styles */
+.hero-section {
+    background-color: #5d9d70; /* A green color for the theme */
+    color: white;
+    padding: 6rem 0;
+}
+
+.featured-plants .card,
+.gardening-tips .card {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.featured-plants .card:hover,
+.gardening-tips .card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.footer {
+    background-color: #343a40;
+    color: white;
+}
