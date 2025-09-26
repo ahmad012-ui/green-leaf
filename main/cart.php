@@ -26,13 +26,12 @@ $total_price = 0;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Shopping Cart - Green Leaf</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Navbar -->
-  <header>
-    <?php include 'navbar.php'; ?>
-  </header>
+  <?php include 'navbar.php'; ?>
 
   <!-- Main -->
   <main class="max-w-6xl mx-auto my-10 px-4">
@@ -69,26 +68,25 @@ $total_price = 0;
                 <td class="p-3"><?php echo htmlspecialchars($item['name']); ?></td>
                 <td class="p-3">$<?php echo htmlspecialchars($item['price']); ?></td>
                 <td class="p-3">
-                  <form action="update_cart.php" method="post" class="flex items-center gap-2">
-                    <input type="hidden" name="cart_id" value="<?php echo htmlspecialchars($item['cart_id']); ?>">
-                    <input type="number" 
-                           name="quantity" 
-                           value="<?php echo htmlspecialchars($item['quantity']); ?>" 
-                           min="1" 
-                           class="w-16 border rounded p-1 text-center">
-                    <button type="submit" 
-                            class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
-                      Update
-                    </button>
-                  </form>
+                  <form action="update_cart.php" method="post" class="update-cart-form flex items-center gap-2" data-id="<?php echo $item['cart_id']; ?>">
+  <input type="hidden" name="cart_id" value="<?php echo htmlspecialchars($item['cart_id']); ?>">
+
+  <button type="button" class="decrement px-2 py-1 bg-gray-300 rounded hover:bg-gray-400" data-id="<?php echo $item['cart_id']; ?>">-</button>
+
+  <span class="quantity font-semibold" id="quantity-<?php echo $item['cart_id']; ?>" data-id="<?php echo $item['cart_id']; ?>">
+      <?php echo htmlspecialchars($item['quantity']); ?>
+  </span>
+
+  <button type="button" class="increment px-2 py-1 bg-gray-300 rounded hover:bg-gray-400" data-id="<?php echo $item['cart_id']; ?>">+</button>
+</form>
                 </td>
-                <td class="p-3">
-                  $<?php
-                    $subtotal = $item['price'] * $item['quantity'];
-                    $total_price += $subtotal;
-                    echo number_format($subtotal, 2);
-                  ?>
-                </td>
+                <td class="p-3 line-total" id="line-total-<?php echo $item['cart_id']; ?>" data-id="<?php echo $item['cart_id']; ?>">
+  $<?php
+    $subtotal = $item['price'] * $item['quantity'];
+    $total_price += $subtotal;
+    echo number_format($subtotal, 2);
+  ?>
+</td>
                 <td class="p-3">
                   <a href="remove_from_cart.php?cart_id=<?php echo htmlspecialchars($item['cart_id']); ?>" 
                      class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm">
@@ -101,7 +99,10 @@ $total_price = 0;
           <tfoot class="bg-gray-100">
             <tr>
               <td colspan="4" class="p-3 text-right font-semibold">Total:</td>
-              <td class="p-3 font-bold">$<?php echo number_format($total_price, 2); ?></td>
+              <td class="p-3 font-bold" id="cart-total">
+  $<?php echo number_format($total_price, 2); ?>
+</td>
+
               <td></td>
             </tr>
           </tfoot>
@@ -131,3 +132,42 @@ $total_price = 0;
 
 </body>
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  function updateCart(cartId, action) {
+    fetch("update_cart.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `cart_id=${cartId}&${action}=1`
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        // Update quantity
+        document.getElementById(`quantity-${cartId}`).textContent = data.quantity;
+
+        // Update line total
+        document.getElementById(`line-total-${cartId}`).textContent = `$${data.line_total}`;
+
+        // Update cart total
+        document.getElementById("cart-total").textContent = `$${data.cart_total}`;
+      }
+    })
+    .catch(err => console.error(err));
+  }
+
+  document.querySelectorAll(".increment").forEach(btn => {
+    btn.addEventListener("click", () => {
+      updateCart(btn.dataset.id, "increment");
+    });
+  });
+
+  document.querySelectorAll(".decrement").forEach(btn => {
+    btn.addEventListener("click", () => {
+      updateCart(btn.dataset.id, "decrement");
+    });
+  });
+});
+</script>
+

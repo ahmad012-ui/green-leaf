@@ -58,6 +58,7 @@ $stmt->close();
   <meta charset="utf-8">
   <title>Edit Profile - Green Leaf</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="bg-gray-100 min-h-screen">
   <?php include 'navbar.php'; ?>
